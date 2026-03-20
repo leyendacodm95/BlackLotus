@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Lotus - Gaming Peripherals</title>
+    <style>
+        /* Definimos los colores neón de la marca */
+        :root {
+            --neon-cyan: #00f3ff;
+            --neon-magenta: #ff00ff;
+            --dark-bg: #0a0a0c;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            /* Aquí colocas el nombre del archivo de tu logo hexagonal para el fondo */
+            background-image: url('logo.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* El overlay oscurece un poco la imagen de fondo para que no interfiera con el video */
+            background-color: rgba(10, 10, 12, 0.85);
+            background-blend-mode: overlay; 
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(20, 20, 25, 0.9);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.3), inset 0 0 15px rgba(255, 0, 255, 0.2);
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid var(--neon-magenta);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+            outline: none;
+            background-color: #000;
+        }
+
+        .controls-container {
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+
+        input[type="checkbox"] {
+            accent-color: var(--neon-cyan);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        label {
+            cursor: pointer;
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Black Lotus Experience</h1>
+        
+        <video id="promoVideo" controls>
+            <source src="/Productos_FINAL.mp4" type="video/mp4">
+            Tu navegador no soporta la etiqueta de video.
+        </video>
+
+        <div class="controls-container">
+            <input type="checkbox" id="loopToggle" checked>
+            <label for="loopToggle">Bucle silencioso automático</label>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('promoVideo');
+        const loopToggle = document.getElementById('loopToggle');
+
+        // Escuchamos el evento 'ended' que se dispara cuando el video termina
+        video.addEventListener('ended', () => {
+            // Verificamos si la casilla del bucle está activada
+            if (loopToggle.checked) {
+                video.muted = true;       // Silenciamos el video
+                video.currentTime = 0;    // Lo regresamos al segundo 0
+                video.play();             // Le damos play de nuevo
+            }
+        });
+    </script>
+</body>
+</html>
